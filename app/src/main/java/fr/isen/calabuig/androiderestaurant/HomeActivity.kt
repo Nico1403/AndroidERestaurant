@@ -1,7 +1,9 @@
 package fr.isen.calabuig.androiderestaurant
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
@@ -27,14 +29,33 @@ class HomeActivity : AppCompatActivity() {
         spinner.adapter = arrayAdapter
         spinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                var intent: Intent
                 if (parent.getItemAtPosition(position) == "Choisissez une fenetre") {
                 }
-                else {
-                    val item = parent.getItemAtPosition(position).toString()
-                    Toast.makeText(parent.context, "Selected: $item", Toast.LENGTH_SHORT).show()
+                if (position == 1 ) {
+                    intent = Intent(this@HomeActivity, FenetreActivity::class.java)
+                    startActivity(intent)
                 }
+                if (position == 2 ) {
+                    intent = Intent(this@HomeActivity, FenetreActivity::class.java)
+                    startActivity(intent)
+                }
+                if (position == 3 ) {
+                    intent = Intent(this@HomeActivity, FenetreActivity::class.java)
+                    startActivity(intent)
+                }
+                //else {
+                //    val item = parent.getItemAtPosition(position).toString()
+                //    Toast.makeText(parent.context, "Selected: $item", Toast.LENGTH_SHORT).show()
+                  //  startActivity()
+                //}
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("HomeActivity","L'activité est détruite")
     }
 }
